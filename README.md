@@ -17,6 +17,7 @@ To change the owner, you need to create a document called transfer ownership, wh
 Let's make an example to understand it:
 - Receipt: id, value, owner, time stamp and signature (server private key)
 - Transfer ownership: id, value, from, to, time stamp and signature (sender private key)
+
 Alice send to Bob
 1. Alice ask for a public key to Bob
 2. Bob send to Alice a new public key that correspond him
