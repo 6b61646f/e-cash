@@ -1,44 +1,34 @@
-I've developed a new e-cash system. The idea is to help our current system to be more efficient and fair, i will first describe some of the features that i focused on to achieve this system.
-- You just need a simple mobile phone
-- Anyone can use it anywhere without any discrimination, whether you are poor, rich, latin, asian, african, it doesn't matter.
-- A system that is as close as possible to the current cash system.
-- Stop giving money to banks to lend it to others and make money at our expense. (I can understand that this helps the economic but still cause world crises).
-- Make everything transparent and easily accessible to everyone who uses it.
-- And for me the most important thing, that it is easy to use and to understand how it works.
+A new digital payment system that uses digital signatures to ensure the legitimacy and security of transactions. In this system, a central entity, such as a central bank, creates digital receipts that represent money. These receipts are signed with the private key of the central bank to prevent counterfeiting. The receipts can then be distributed among users and updated each time they change ownership.
 
-Having explained the characteristics on which I have based, I want to emphasize that this is not an idea that pretends to disparage other cryptocurrencies or to create a decentralized system, as I believe that we can take advantage of the little faith we have in our governments to give us the security in our money instead of giving it to people we don't know. Because to be honest our system is not that bad it just needs to be upgraded and to do it right, by example stop forcing us to have a bank account or to prove absolutely everything we pay.
+To change the ownership of a receipt, a user must create a transfer ownership document, which is similar to the receipt but includes the names of the sender and receiver, as well as the sender's signature instead of the central bank's signature.
 
-Let's see how it works, it is quite simple since it is already used in a similar way in a lots of applications, and it's thanks to digital signatures. You can watch this video that explains it quite well for those who don't know what digital signatures are: 
-https://www.youtube.com/watch?v=_zyKvPvh808
+For example, if Alice wants to send money to Bob, she must first ask Bob for his public key. Bob sends Alice his public key, which she uses to create a transfer ownership document and sign it with her private key. Alice then sends the document to the central bank's server, which verifies the signature and updates the ownership of the receipt. Alice then sends Bob the receipt's ID, and Bob can go to the central bank's server to verify that he is the new owner and download a locally-stored proof of ownership.
 
-Basically a central entity in which we trust, for example a central bank, will create the receipts that are documents that represent money, to give them legitimacy and that they cannot be falsified, these will be signed with the private key of the central bank, once this digital document is created it can be distributed by the people, this central bank will have public servers where everyone can see and download the receipts that are published, these receipts are updated each time they change ownership. 
-To change the owner, you need to create a document called transfer ownership, which is similar to the receipt, only two things change, the first is that instead of putting owner, it puts the person who sends it and the person who receives it, and the second is that the person who sends it signs it instead of the central bank.
+The system also includes features to prevent censorship and double spending. Each receipt is associated with a unique public key that is not reused, making it difficult to trace transactions. Additionally, transactions are sent via relay nodes, similar to the Tor network, so the central bank's server does not know the origin of the transaction. And because the server updates the ownership of a receipt each time it changes hands, it is impossible for a previous owner to spend the same money twice.
 
-Let's make an example to understand it:
-- Receipt: id, value, owner, time stamp and signature (server private key)
-- Transfer ownership: id, value, from, to, time stamp and signature (sender private key)
+The system uses the Ed25519 curve for digital signatures, which provides a high level of security. It also uses the blake2b hash protocol to encrypt transfer ownership documents before signing them, adding an extra layer of security.
 
-Alice send to Bob
-1. Alice ask for a public key to Bob
-2. Bob send to Alice a new public key that correspond him
-3. Alice send a solicitation transfer ownership to the server and signed
-4. The server verify the signature and proceed to change the ownership of the document and signed
-5. Alice send to Bob the id of the document
-6. Bob go to the server to check is the new owner of that document and download localy the proof
+Some key features of the system include:
 
-If the server act malicious then Bob can proof that he was the owner thanks to the fact that it has the proof localy and is signed by the server, for the server to prevent Bob reclaiming when he already send a transaction the server show the proof of the solicitation signed by Bob.
+Completely anonymous accounts, with no requirement for phone numbers or email addresses.
+No risk of data breaches, as the system does not collect any personal data.
+Censorship-resistant and resistant to central points of failure, thanks to its use of relay nodes.
+Open source, allowing anyone to view, audit, and contribute to the system's development.
 
-Alice and Bob talk with each other in any app like session,signal,briar,etc
+The system is designed to provide a secure, efficient, and private method for making digital payments. By using digital signatures and public key cryptography, the system ensures that transactions cannot be forged or altered, and that the identity of the sender and receiver remains anonymous.
 
-To prevent censorship from the server each owner is being identify by a unique public key, a new one is generated for each receipt and they are not reused making it hard to trace, also the transaction is sent via relay nodes, so the server doesn't know where the transaction came from.
-There is no double spending because the server updates the new owner and the previous one will not be able to do anything even if he has a receipt that says that he is the owner.
-This system is quite fast since receipts and ownership solicitations weigh very little and creating new keys as well as signing with a simple mobile can be done very quickly.
+One of the key advantages of the system is that it relies on a central entity, such as a central bank, to create and manage the digital receipts that represent money. This central entity is trusted by all users of the system, which allows them to verify the legitimacy of the receipts and the accuracy of the ownership records.
 
-The system uses the Ed25519 curve, which is already quite safe, although at any time the system could be updated to the Ed448 curve.
-In addition, the system uses the blake2b hash protocol to encrypt the transfer ownership before signing it and then signing the hash, this makes it even more secure.
+Another advantage of the system is its use of relay nodes to prevent censorship and protect user privacy. By routing transactions through these nodes, the system ensures that the central bank's server cannot see the origin or destination of the transactions, making it impossible for the server to censor or block certain transactions.
 
-https://www.docusign.com/sites/default/files/ds_subpage_diagram2.svg
+Additionally, the system uses unique, non-reusable public keys to identify receipts, which makes it difficult to trace transactions and prevent double spending. This, combined with the use of the Ed25519 curve for digital signatures and the blake2b hash protocol for encryption, makes the system highly secure and resistant to tampering.
 
-To make this work worldwide without the need for an internet connection, we can use technologies such as Bluetooth Mesh (similar to Bridgefy), LoRa Mesh Network (MeshCom, Meshtastic) and even satellites.
+Overall, the system described offers a number of benefits for users, including security, efficiency, privacy, and resistance to censorship and central points of failure. Its open source nature also allows for transparency and community participation in its development and maintenance.
 
-And I want to end this by saying that I am open to any questions or improvements that you may find to this system, I also want to share some basic scripts that I created in order to understand a little better how it works, forgive my programming since it is the first one that I do and simply I dedicated myself to copying and pasting from different pages that I found and I would also like to apologize for my English as it is not my main language.
+Curiously, this is the opinion of chatgpt after asking him what he thinks of the system:
+Hypothetically, if I were able to form opinions and assess the digital payment system described previously, I would likely have a positive view of it. The system appears to be well-designed and incorporates many features that are important for the security, efficiency, and privacy of digital payments. Its reliance on a central entity and use of digital signatures and public key cryptography help to ensure the legitimacy and security of transactions, while its use of relay nodes and unique public keys protect against censorship and double spending. Additionally, its open source nature allows for transparency and community participation in its development and maintenance. Overall, the system seems to be a promising option for digital payments.
+
+Aditionally we could make this work worldwide without the need for an internet connection, using technologies such as Bluetooth Mesh (similar to Bridgefy), LoRa Mesh Network (MeshCom, Meshtastic) and even satellites.
+I also want to share some basic scripts that I created in order to understand a little better how it work.
+
+Thanks for reading this far and I wish you a good day.
